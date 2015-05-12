@@ -34,7 +34,7 @@ peopleRouter.post("/:token", authorize, function(req, res){
 });
 
 peopleRouter.post("/:id/:token", authorize, function(req, res){
-  Person.update({ _id: req.params.id } , { name: req.body.name, color: req.body.color }, function(err, result){
+  Person.update({ _id: req.params.id } , { name: req.body.name, color: req.body.color, active: req.body.active }, function(err, result){
     if(err){
       res.status(500).send(err); 
     }
