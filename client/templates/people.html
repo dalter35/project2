@@ -36,7 +36,7 @@
       </div>
       <div class="col-md-3 text-right" ng-show='loggedIn()'>
         <button ng-click="edit(person)" class="btn btn-primary">Edit</button>
-        <button ng-click="delete(person)" class="btn btn-danger">Delete</button>
+        <button ng-click="delete(person)" class="btn btn-danger" ng-show='!person.active'>Delete</button>
       </div>
     </div>
   </li>
