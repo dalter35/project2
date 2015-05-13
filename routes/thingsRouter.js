@@ -16,4 +16,15 @@ thingsRouter.get("/:id", function(req, res){
   }); 
 });
 
+thingsRouter.post("/:id/:token", authorize, function(req, res){
+  Thing.update({ _id: req.params.id } , { name: req.body.name, color: req.body.color, description: req.body.description }, function(err, result){
+    if(err){
+      res.status(500).send(err); 
+    }
+    else{
+      res.send(result); 
+    }
+  });
+});
+
 module.exports = thingsRouter;
