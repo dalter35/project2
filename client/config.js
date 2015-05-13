@@ -16,6 +16,10 @@ angular.module("myWorld").config(function($routeProvider, $locationProvider){
       controller: "ThingsCtrl",
       templateUrl: "/templates/things.html"
     })
+    .when("/things/:id", {
+      controller: "ThingCtrl",
+      templateUrl: '/templates/thing.html'
+    })
     .when("/login", {
       controller: "LoginCtrl",
       templateUrl: "/templates/login.html"

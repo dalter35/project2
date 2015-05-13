@@ -14,7 +14,18 @@ var UserSchema = new mongoose.Schema({
 
 var User = mongoose.model("User", UserSchema);
 
+var ThingSchema = new mongoose.Schema({
+  name: {type: String,
+        unique: true,
+        required: true},
+  color: String,
+  description: String
+})
+
+var Thing = mongoose.model("Thing", ThingSchema)
+
 module.exports = {
     Person: Person, 
-    User: User
+    User: User,
+    Thing: Thing
 };
