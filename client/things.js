@@ -10,7 +10,6 @@ angular.module("myWorld")
   }
   activate();  
   })
-  
   .factory("ThingsSvc", function($q, $http){
     return{
       getThings: function(){
