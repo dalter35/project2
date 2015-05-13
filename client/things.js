@@ -8,9 +8,24 @@ angular.module("myWorld")
       $scope.things = things;
     });
   }
-  activate();  
+  activate();
+  
+  $scope.insert = function(){
+    ThingsSvc.insertThing($scope.inserting).then(
+      function(thing){
+        $scope.success = "Insert successful for " + thing.name;
+        $scope.error = null;
+        activate();
+      },
+      function(error){
+        $scope.error = error;
+        $scope.success = null;
+      }
+    );
+  };
+  
   })
-  .factory("ThingsSvc", function($q, $http){
+  .factory("ThingsSvc", function($q, $http, AuthSvc){
     return{
       getThings: function(){
         var dfd = $q.defer();
@@ -25,7 +40,20 @@ angular.module("myWorld")
          dfd.resolve(result.data);
          });
         return dfd.promise;
-      }
+      },
+      insertThing: function(thing){
+      var dfd = $q.defer();  
+      $http.post("/api/things/" + AuthSvc.getToken(), thing).then(
+        function(result){
+          console.log(result);
+          dfd.resolve(result.data);
+        },
+        function(result){
+          dfd.reject(result.data);
+        }
+      );
+      return dfd.promise;
+    }
     
     }
 });
